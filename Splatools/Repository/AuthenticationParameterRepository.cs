@@ -25,6 +25,7 @@ public class AuthenticationParameterRepository : IAuthenticationParameterReposit
 
     public async Task<string> GetSessionTokenCodeVerifier(Guid key)
     {
-        return await _db.AuthenticationParameters.Where(x => x.Key == key).Select(x => x.Verifier).FirstOrDefaultAsync();
+        return await _db.AuthenticationParameters.Where(x => x.Key == key).Select(x => x.Verifier)
+            .FirstOrDefaultAsync();
     }
 }

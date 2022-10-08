@@ -23,7 +23,7 @@ public class FClient : IFClient
         param.token = token;
         param.hash_method = 1;
 
-        var req = new HttpRequestMessage()
+        var req = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
             RequestUri = new Uri(SplatoonConstants.FEndpoint)

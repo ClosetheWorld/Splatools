@@ -4,5 +4,5 @@ namespace Splatools.Infrastructure.ExternalServices.F;
 
 public interface IFClient
 {
-    Task<FResponse> GetF(string token); 
+    Task<FResponse> GetF(string token);
 }

@@ -27,7 +27,8 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 // Repositories
 builder.Services.AddScoped<IAuthenticationParameterRepository, AuthenticationParameterRepository>();
 
-builder.Services.AddDbContext<SplatDbContext>(optionsBuilder => optionsBuilder.UseSqlServer(configuration.GetConnectionString("Database")));
+builder.Services.AddDbContext<SplatDbContext>(optionsBuilder =>
+    optionsBuilder.UseSqlServer(configuration.GetConnectionString("Database")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

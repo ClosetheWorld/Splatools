@@ -26,7 +26,7 @@ public class NintendoUrlService : INintendoUrlService
         var verifier = ChallengeHelper.GenerateCodeVerifier();
         var challenge = ChallengeHelper.GenerateCodeChallenge(verifier);
 
-        await CallInsertAuthenticationParameterAsync(new AuthenticationParameter()
+        await CallInsertAuthenticationParameterAsync(new AuthenticationParameter
         {
             Key = key,
             Verifier = verifier,
