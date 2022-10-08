@@ -33,6 +33,9 @@ namespace Splatools.Migrations
                         .HasMaxLength(52)
                         .HasColumnType("nvarchar(52)");
 
+                    b.Property<long>("InsertionTime")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Key");
 
                     b.ToTable("AuthenticationParameters");

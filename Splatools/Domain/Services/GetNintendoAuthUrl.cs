@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Splatools.Domain.Entities;
 using Splatools.Domain.Entities.Dto;
 using Splatools.Domain.Entities.ValueObjects;
 using Splatools.Domain.Helpers;
 using Splatools.Domain.Services.Interfaces;
+using Splatools.Repository.Interfaces;
 
 namespace Splatools.Domain.Services;
 
 public class GetNintendoAuthUrl : IGetNintendoAuthUrl
 {
+    private readonly IAuthenticationParameterRepository _repository;
+
+    public GetNintendoAuthUrl(IAuthenticationParameterRepository repository)
+    {
+        _repository = repository;
+    }
+
     public async Task<NintendoAuthResponse> GetAuthUrl()
     {
         var key = Guid.NewGuid();
@@ -17,7 +26,12 @@ public class GetNintendoAuthUrl : IGetNintendoAuthUrl
         var verifier = ChallengeHelper.GenerateCodeVerifier();
         var challenge = ChallengeHelper.GenerateCodeChallenge(verifier);
 
-        // TODO: DB
+        await CallInsertAuthenticationParameterAsync(new AuthenticationParameter()
+        {
+            Key = key,
+            Challenge = challenge,
+            InsertionTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+        });
 
         return new NintendoAuthResponse
         {
@@ -40,5 +54,10 @@ public class GetNintendoAuthUrl : IGetNintendoAuthUrl
         sb.Append($"&theme={NintendoConstants.NintendoRequestTheme}");
 
         return sb.ToString();
+    }
+
+    private async Task CallInsertAuthenticationParameterAsync(AuthenticationParameter req)
+    {
+        await _repository.InsertAuthenticationParameter(req);
     }
 }

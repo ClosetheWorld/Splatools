@@ -10,4 +10,6 @@ public class AuthenticationParameter
     
     [MaxLength(52)]
     public string Challenge { get; set; }
+    
+    public long InsertionTime { get; set; }
 }

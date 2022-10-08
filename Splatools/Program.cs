@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Splatools.Domain.Services;
 using Splatools.Domain.Services.Interfaces;
 using Splatools.Infrastructure.Database;
+using Splatools.Repository;
+using Splatools.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,11 @@ var environment = builder.Environment;
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 
+// Services
 builder.Services.AddScoped<IGetNintendoAuthUrl, GetNintendoAuthUrl>();
+
+// Repositories
+builder.Services.AddScoped<IAuthenticationParameterRepository, AuthenticationParameterRepository>();
 
 builder.Services.AddDbContext<SplatDbContext>(optionsBuilder => optionsBuilder.UseSqlServer(configuration.GetConnectionString("Database")));
 
