@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Splatools.Domain.Services;
@@ -7,13 +9,16 @@ using Splatools.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = builder.Configuration;
+var environment = builder.Environment;
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IGetNintendoAuthUrl, GetNintendoAuthUrl>();
 
-builder.Services.AddDbContext<SplatDbContext>();
+builder.Services.AddDbContext<SplatDbContext>(optionsBuilder => optionsBuilder.UseSqlServer(configuration.GetConnectionString("Database")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
