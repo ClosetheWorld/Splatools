@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Splatools.Domain.Services;
 using Splatools.Domain.Services.Interfaces;
 using Splatools.Infrastructure.Database;
+using Splatools.Infrastructure.ExternalServices.F;
 using Splatools.Repository;
 using Splatools.Repository.Interfaces;
 
@@ -16,10 +17,12 @@ var environment = builder.Environment;
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ITokenService, TokenService>();
+builder.Services.AddHttpClient<IFClient, FClient>();
 
 // Services
-builder.Services.AddScoped<IGetNintendoAuthUrl, GetNintendoAuthUrl>();
+builder.Services.AddScoped<INintendoUrlService, NintendoUrlService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Repositories
 builder.Services.AddScoped<IAuthenticationParameterRepository, AuthenticationParameterRepository>();
