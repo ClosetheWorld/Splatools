@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Splatools.Domain.Helpers;
 
-public class ChallengeHelper
+public static class ChallengeHelper
 {
-    public string GenerateState()
+    public static string GenerateState()
     {
         const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQXYZ123456789_";
         var random = new Random();
@@ -16,7 +16,7 @@ public class ChallengeHelper
         return new string(state);           
     }
 
-    public string GenerateCodeVerifier()
+    public static string GenerateCodeVerifier()
     {
         const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQXYZ123456789";
         var random = new Random();
@@ -26,7 +26,7 @@ public class ChallengeHelper
         return new string(verifier);
     }
 
-    public string GenerateCodeChallenge(string verifier)
+    public static string GenerateCodeChallenge(string verifier)
     {
         using var sha256 = SHA256.Create();
         var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(verifier));
