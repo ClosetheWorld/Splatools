@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Splatools.Infrastructure.Database;
 
@@ -11,9 +12,10 @@ using Splatools.Infrastructure.Database;
 namespace Splatools.Migrations
 {
     [DbContext(typeof(SplatDbContext))]
-    partial class SplatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221008183734_fix-AuthenticationParameters-Challenge-to-Verifier")]
+    partial class fixAuthenticationParametersChallengetoVerifier
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

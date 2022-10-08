@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Splatools.Infrastructure.Database;
 
@@ -11,9 +12,10 @@ using Splatools.Infrastructure.Database;
 namespace Splatools.Migrations
 {
     [DbContext(typeof(SplatDbContext))]
-    partial class SplatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221008183036_add-AuthenticationParameter-InsertionTime")]
+    partial class addAuthenticationParameterInsertionTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,13 +30,13 @@ namespace Splatools.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("InsertionTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Verifier")
+                    b.Property<string>("Challenge")
                         .IsRequired()
                         .HasMaxLength(52)
                         .HasColumnType("nvarchar(52)");
+
+                    b.Property<long>("InsertionTime")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Key");
 

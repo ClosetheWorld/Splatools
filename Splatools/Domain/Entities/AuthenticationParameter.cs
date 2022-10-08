@@ -9,5 +9,7 @@ public class AuthenticationParameter
     public Guid Key { get; set; }
     
     [MaxLength(52)]
-    public string Challenge { get; set; }
+    public string Verifier { get; set; }
+    
+    public long InsertionTime { get; set; }
 }
