@@ -2,6 +2,7 @@
 
 public static class NintendoConstants
 {
+    public const string NintendoNsOnlineAppUserAgent = "Coral/2.3.1 (com.nintendo.znca; iOS 16.0)";
     public const string NintendoAuthBaseUrl = "https://accounts.nintendo.com/connect/1.0.0/authorize";
     public const string NintendoRedirectUri = "npf71b963c1b7b6d119%3A%2F%2Fauth";
     public const string NintendoClientId = "71b963c1b7b6d119";
@@ -13,4 +14,6 @@ public static class NintendoConstants
     public const string NintendoAccessTokenEndpoint = "https://accounts.nintendo.com/connect/1.0.0/api/token";
     public const string NintendoAppTokenEndpoint = "https://api-lp1.znc.srv.nintendo.net/v3/Account/Login";
     public const string NintendoAccessTokenGrantType = "urn:ietf:params:oauth:grant-type:jwt-bearer-session-token";
+
+    public const string NintendoUsersMeEndpoint = "https://api.accounts.nintendo.com/2.0.0/users/me";
 }

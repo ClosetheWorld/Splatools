@@ -7,6 +7,7 @@ using Splatools.Domain.Services;
 using Splatools.Domain.Services.Interfaces;
 using Splatools.Infrastructure.Database;
 using Splatools.Infrastructure.ExternalServices.F;
+using Splatools.Infrastructure.ExternalServices.Nintendo;
 using Splatools.Repository;
 using Splatools.Repository.Interfaces;
 
@@ -19,13 +20,17 @@ var environment = builder.Environment;
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<ITokenService, TokenService>();
 builder.Services.AddHttpClient<IFClient, FClient>();
+builder.Services.AddHttpClient<INintendoClient, NintendoClient>();
 
 // Services
 builder.Services.AddScoped<INintendoUrlService, NintendoUrlService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Repositories
 builder.Services.AddScoped<IAuthenticationParameterRepository, AuthenticationParameterRepository>();
+
+// External Services
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<INintendoClient, NintendoClient>();
 
 builder.Services.AddDbContext<SplatDbContext>(optionsBuilder =>
     optionsBuilder.UseSqlServer(configuration.GetConnectionString("Database")));
