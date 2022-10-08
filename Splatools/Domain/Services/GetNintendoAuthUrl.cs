@@ -29,7 +29,7 @@ public class GetNintendoAuthUrl : IGetNintendoAuthUrl
         await CallInsertAuthenticationParameterAsync(new AuthenticationParameter()
         {
             Key = key,
-            Challenge = challenge,
+            Verifier = verifier,
             InsertionTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
         });
 
