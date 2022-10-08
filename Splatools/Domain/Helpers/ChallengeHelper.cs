@@ -13,7 +13,7 @@ public static class ChallengeHelper
         var state = new char[49];
         for (var i = 0; i < state.Length; i++)
             state[i] = chars[random.Next(chars.Length)];
-        return new string(state);           
+        return new string(state);
     }
 
     public static string GenerateCodeVerifier()
@@ -21,7 +21,7 @@ public static class ChallengeHelper
         const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQXYZ123456789";
         var random = new Random();
         var verifier = new char[51];
-        for (int i = 0; i < verifier.Length; i++)
+        for (var i = 0; i < verifier.Length; i++)
             verifier[i] = chars[random.Next(chars.Length)];
         return new string(verifier);
     }

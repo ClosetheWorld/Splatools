@@ -19,7 +19,7 @@ public class AuthController
     public async Task<OkObjectResult> GetUrl()
     {
         var response = await _getNintendoAuthUrl.GetAuthUrl();
-        
+
         return new OkObjectResult(response);
     }
 }

@@ -16,10 +16,10 @@ public class GetNintendoAuthUrl : IGetNintendoAuthUrl
         var state = ChallengeHelper.GenerateState();
         var verifier = ChallengeHelper.GenerateCodeVerifier();
         var challenge = ChallengeHelper.GenerateCodeChallenge(verifier);
-        
+
         // TODO: DB
 
-        return new NintendoAuthResponse()
+        return new NintendoAuthResponse
         {
             AuthUrl = CreateAuthUrl(state, challenge),
             Key = key.ToString()
