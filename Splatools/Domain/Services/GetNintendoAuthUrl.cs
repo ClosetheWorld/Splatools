@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using Splatools.Domain.Entities.Dto;
 using Splatools.Domain.Entities.ValueObjects;
 using Splatools.Domain.Helpers;
+using Splatools.Domain.Services.Interfaces;
 
 namespace Splatools.Domain.Services;
 
-public class GetNintendoAuthUrl
+public class GetNintendoAuthUrl : IGetNintendoAuthUrl
 {
     public async Task<NintendoAuthResponse> GetAuthUrl()
     {
@@ -15,10 +16,10 @@ public class GetNintendoAuthUrl
         var state = ChallengeHelper.GenerateState();
         var verifier = ChallengeHelper.GenerateCodeVerifier();
         var challenge = ChallengeHelper.GenerateCodeChallenge(verifier);
-        
+
         // TODO: DB
 
-        return new NintendoAuthResponse()
+        return new NintendoAuthResponse
         {
             AuthUrl = CreateAuthUrl(state, challenge),
             Key = key.ToString()
