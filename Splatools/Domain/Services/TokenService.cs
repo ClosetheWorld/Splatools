@@ -55,7 +55,7 @@ public class TokenService : ITokenService
 
         // get bullet token
         var bulletToken = await GetBulletToken(nsoAppToken.Result.AccessToken);
-        
+
         // TODO: what to do next
     }
 
@@ -98,7 +98,8 @@ public class TokenService : ITokenService
     }
 
     // TODO: error handling
-    private async Task<NintendoSwitchOnlineTokenResponse> GetNsoAccessToken(string idToken, FResponse f, string birthday)
+    private async Task<NintendoSwitchOnlineTokenResponse> GetNsoAccessToken(string idToken, FResponse f,
+        string birthday)
     {
         var param = new NintendoSwitchOnlineTokenRequest
         {
@@ -170,7 +171,7 @@ public class TokenService : ITokenService
         var req = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
-            RequestUri = new Uri(SplatoonConstants.Splatoon3BulletTokenEndpoint),
+            RequestUri = new Uri(SplatoonConstants.Splatoon3BulletTokenEndpoint)
         };
         req.Headers.Add("Cookie", $"_gtoken={nsoAppToken}");
         req.Headers.Add("X-NACOUNTRY", "JP");
@@ -182,7 +183,7 @@ public class TokenService : ITokenService
         var responseBody = await response.Content.ReadAsStringAsync();
         return JsonConvert.DeserializeObject<BulletTokenResponse>(responseBody);
     }
-    
+
     private async Task<string> CallGetAuthenticationParameter(string key)
     {
         var guid = new Guid(key);
