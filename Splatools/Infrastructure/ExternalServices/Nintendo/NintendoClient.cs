@@ -20,7 +20,7 @@ public class NintendoClient : INintendoClient
         var req = new HttpRequestMessage
         {
             Method = HttpMethod.Get,
-            RequestUri = new Uri(NintendoConstants.NintendoUsersMeEndpoint),
+            RequestUri = new Uri(NintendoConstants.NintendoUsersMeEndpoint)
         };
         req.Headers.Add("Authorization", $"Bearer {accessToken}");
         var response = await _client.SendAsync(req);

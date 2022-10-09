@@ -2,13 +2,13 @@
 
 namespace Splatools.Domain.Entities.Dto;
 
-public class NintendoAppTokenRequest
+public class NintendoSwitchOnlineTokenRequest
 {
-    [JsonProperty("parameter")] public Parameter Parameter { get; set; }
+    [JsonProperty("parameter")] public NsoTokenParams Parameter { get; set; }
     [JsonProperty("requetId")] public string RequestId { get; set; }
 }
 
-public class Parameter
+public class NsoTokenParams
 {
     [JsonProperty("language")] public string Language = "ja-JP";
     [JsonProperty("naCountry")] public string NaCountry = "JP";

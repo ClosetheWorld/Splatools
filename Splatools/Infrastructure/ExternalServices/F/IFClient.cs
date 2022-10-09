@@ -4,5 +4,6 @@ namespace Splatools.Infrastructure.ExternalServices.F;
 
 public interface IFClient
 {
-    Task<FResponse> GetF(string token);
+    Task<FResponse> GetFForNsO(string token);
+    Task<FResponse> GetFForWebApp(string token);
 }
