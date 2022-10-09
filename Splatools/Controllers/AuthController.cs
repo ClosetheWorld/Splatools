@@ -1,25 +1,36 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Splatools.Domain.Entities.Dto;
 using Splatools.Domain.Services.Interfaces;
 
 namespace Splatools.Controllers;
 
 [ApiController]
-[Route("/api/url")]
+[Route("/api/[controller]")]
 public class AuthController
 {
-    private readonly IGetNintendoAuthUrl _getNintendoAuthUrl;
+    private readonly INintendoUrlService _nintendoUrlService;
+    private readonly ITokenService _tokenService;
 
-    public AuthController(IGetNintendoAuthUrl getNintendoAuthUrl)
+    public AuthController(INintendoUrlService nintendoUrlService, ITokenService tokenService)
     {
-        _getNintendoAuthUrl = getNintendoAuthUrl;
+        _nintendoUrlService = nintendoUrlService;
+        _tokenService = tokenService;
     }
 
-    [HttpGet]
+    [HttpGet("url")]
     public async Task<OkObjectResult> GetUrl()
     {
-        var response = await _getNintendoAuthUrl.GetAuthUrl();
+        var response = await _nintendoUrlService.GetAuthUrl();
 
         return new OkObjectResult(response);
+    }
+
+    [HttpPost("splatoken")]
+    public async Task<IActionResult> GetSplatoken(GetSplatokenRequest req)
+    {
+        await _tokenService.GetSplatoken(req);
+
+        return new OkResult();
     }
 }

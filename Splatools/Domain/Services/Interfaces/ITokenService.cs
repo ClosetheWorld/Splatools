@@ -3,7 +3,7 @@ using Splatools.Domain.Entities.Dto;
 
 namespace Splatools.Domain.Services.Interfaces;
 
-public interface INintendoUrlService
+public interface ITokenService
 {
-    Task<NintendoAuthResponse> GetAuthUrl();
+    Task GetSplatoken(GetSplatokenRequest req);
 }

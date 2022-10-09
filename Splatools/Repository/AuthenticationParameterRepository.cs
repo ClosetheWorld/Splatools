@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Splatools.Domain.Entities;
 using Splatools.Infrastructure.Database;
 using Splatools.Repository.Interfaces;
@@ -18,5 +21,11 @@ public class AuthenticationParameterRepository : IAuthenticationParameterReposit
     {
         await _db.AuthenticationParameters.AddAsync(req);
         await _db.SaveChangesAsync();
+    }
+
+    public async Task<string> GetSessionTokenCodeVerifier(Guid key)
+    {
+        return await _db.AuthenticationParameters.Where(x => x.Key == key).Select(x => x.Verifier)
+            .FirstOrDefaultAsync();
     }
 }

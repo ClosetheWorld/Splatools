@@ -10,11 +10,11 @@ using Splatools.Repository.Interfaces;
 
 namespace Splatools.Domain.Services;
 
-public class GetNintendoAuthUrl : IGetNintendoAuthUrl
+public class NintendoUrlService : INintendoUrlService
 {
     private readonly IAuthenticationParameterRepository _repository;
 
-    public GetNintendoAuthUrl(IAuthenticationParameterRepository repository)
+    public NintendoUrlService(IAuthenticationParameterRepository repository)
     {
         _repository = repository;
     }
@@ -26,7 +26,7 @@ public class GetNintendoAuthUrl : IGetNintendoAuthUrl
         var verifier = ChallengeHelper.GenerateCodeVerifier();
         var challenge = ChallengeHelper.GenerateCodeChallenge(verifier);
 
-        await CallInsertAuthenticationParameterAsync(new AuthenticationParameter()
+        await CallInsertAuthenticationParameterAsync(new AuthenticationParameter
         {
             Key = key,
             Verifier = verifier,
