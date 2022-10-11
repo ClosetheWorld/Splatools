@@ -28,4 +28,14 @@ public class AuthenticationParameterRepository : IAuthenticationParameterReposit
         return await _db.AuthenticationParameters.Where(x => x.Key == key).Select(x => x.Verifier)
             .FirstOrDefaultAsync();
     }
+
+    public async Task DeleteAuthenticationParameter(string key)
+    {
+        var target = await _db.AuthenticationParameters.Where(x => x.Key == new Guid(key)).FirstOrDefaultAsync();
+        if (target != null)
+        {
+            _db.AuthenticationParameters.Remove(target);
+            await _db.SaveChangesAsync();
+        }
+    }
 }

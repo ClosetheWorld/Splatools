@@ -8,4 +8,5 @@ public interface IAuthenticationParameterRepository
 {
     Task InsertAuthenticationParameter(AuthenticationParameter req);
     Task<string> GetSessionTokenCodeVerifier(Guid key);
+    Task DeleteAuthenticationParameter(string key);
 }
