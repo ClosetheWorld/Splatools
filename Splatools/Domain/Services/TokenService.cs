@@ -38,6 +38,7 @@ public class TokenService : ITokenService
         // get session token from nintendo api
         var verifier = await CallGetAuthenticationParameter(req.Key);
         var sessionToken = await GetSessionToken(sessionTokenCode, verifier);
+        await DeleteTokenVerifier(req.Key);
 
         // get access token from nintendo api
         var accessToken = await GetAccessToken(sessionToken.SessionToken);
@@ -203,5 +204,10 @@ public class TokenService : ITokenService
     private async Task<MeResponse> CallNintendoMe(string accessToken)
     {
         return await _nintendoClient.GetMe(accessToken);
+    }
+
+    private async Task DeleteTokenVerifier(string key)
+    {
+        await _authentication.DeleteAuthenticationParameter(key);
     }
 }
