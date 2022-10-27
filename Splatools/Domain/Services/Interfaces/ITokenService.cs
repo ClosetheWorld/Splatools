@@ -5,5 +5,5 @@ namespace Splatools.Domain.Services.Interfaces;
 
 public interface ITokenService
 {
-    Task GetSplatoken(GetSplatokenRequest req);
+    Task<GetSplatokenResponse> GetSplatoken(GetSplatokenRequest req);
 }

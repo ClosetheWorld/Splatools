@@ -29,8 +29,8 @@ public class AuthController
     [HttpPost("splatoken")]
     public async Task<IActionResult> GetSplatoken(GetSplatokenRequest req)
     {
-        await _tokenService.GetSplatoken(req);
+        var response = await _tokenService.GetSplatoken(req);
 
-        return new OkResult();
+        return new OkObjectResult(response);
     }
 }

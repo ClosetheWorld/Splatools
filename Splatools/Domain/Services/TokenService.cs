@@ -29,7 +29,7 @@ public class TokenService : ITokenService
         _nintendoClient = nintendoClient;
     }
 
-    public async Task GetSplatoken(GetSplatokenRequest req)
+    public async Task<GetSplatokenResponse> GetSplatoken(GetSplatokenRequest req)
     {
         // get session token code from request
         var queries = req.Uri.Split('&');
@@ -58,6 +58,11 @@ public class TokenService : ITokenService
         var bulletToken = await GetBulletToken(nsoAppToken.Result.AccessToken);
 
         // TODO: what to do next
+        return new GetSplatokenResponse()
+        {
+            GameToken = nsoAppToken.Result.AccessToken,
+            BulletToken = bulletToken.BulletToken
+        };
     }
 
     // TODO: error handling
